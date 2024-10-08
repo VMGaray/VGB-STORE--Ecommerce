@@ -1,0 +1,7 @@
+.card_primary {
+    background-color: var(--quaternary-color);
+}
+
+.card_secondary {
+    background-color: var(--secondary-color);
+}

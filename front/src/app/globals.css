@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary-color: #D2E0FB;
+    --secundant-color: #FEF9D9;
+    --tertiary-color: #DEE5D4;
+    --quarternary-color: #8EACCD;
+}
+
+body {
+    background-color: var(--tertiary-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container {
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+footer {
+    margin-top: auto;
+}
