@@ -6,7 +6,7 @@ interface CardListProps {
 }
 
 const CardList = ({children} : CardListProps) => {
-  return <div className={styles.cardList}> {children} </div>;         
+  return <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3"> {children} </div>;         
   
 };
 

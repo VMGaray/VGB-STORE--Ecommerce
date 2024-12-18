@@ -1,19 +1,21 @@
 import CardList from "@/components/Card/CardList/CardList";
-import { productsMock } from "../mocks/products";
 import Card from "@/components/Card/Card";
+import { getProducts } from "@/service/products";
 
-const page = () => {
-  return (
-    <div>
-      <CardList>
-        {productsMock.map((product, i)=> (
+const page = async() => {
+  const products = await getProducts();
+
+    return (
+      <div>
+        <CardList>
+        {products.map((product, i)=> (
         <Card key={i} {...product} variant = "secondary" />
 
          ))}
-      </CardList>
-    </div>
+        </CardList>
+      </div>
 
-   );
+    );
     
   };
 

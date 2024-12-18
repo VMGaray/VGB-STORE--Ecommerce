@@ -10,16 +10,18 @@
 }
 
 body {
-    background-color: var(--tertiary-color);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    @apply bg-tertiary flex flex-col min-h-screen;
+      
 }
 .container {
-    margin: 0 auto;
-    max-width: 80%;
+    @apply mx-auto max-w-[80%];
 }
 
 footer {
-    margin-top: auto;
+    @apply mt-auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--primary-color);
+    @apply font-bold;
 }
