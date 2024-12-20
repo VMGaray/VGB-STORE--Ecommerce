@@ -1,4 +1,4 @@
-import validator from "validator";
+/*import validator from "validator";
 
 export const validateEmail = (e:string) => {
     let validation = ""
@@ -10,4 +10,4 @@ export const validatePassword = (p:string) => {
       let validation = ""
       if(!validator.isLength(p, {min:4, max:8})) validation = "Min 4, Max 8";
        return validation;
-      };
+      }; */

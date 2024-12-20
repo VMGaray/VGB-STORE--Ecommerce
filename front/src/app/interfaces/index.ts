@@ -19,3 +19,8 @@ export interface User {
     phone: string;
    
 }
+
+export interface FormData {
+    email:string,
+    password:string,
+  }

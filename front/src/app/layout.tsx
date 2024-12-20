@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 
+
 const primaryFont = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-primary",
@@ -31,10 +32,11 @@ export default function RootLayout({
       <body
         className={`${primaryFont.variable} ${secondaryFont.variable} antialiased`}
       >
+        
         <Navbar />
         <main className="container">{children}</main> 
-        
         <Footer />
+        
       </body>
     </html>
   );
