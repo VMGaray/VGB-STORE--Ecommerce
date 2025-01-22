@@ -4,7 +4,7 @@ const page = () => {
     
     return (
     <>
-     <h1>Register</h1>
+     <h1>Nuevo Usuario</h1>
      < RegisterForm />
       
      </> 

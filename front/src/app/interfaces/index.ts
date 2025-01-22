@@ -9,6 +9,13 @@ export interface Product {
     categoryId: number;
 }
 
+export interface RegisterFormType {
+    name: string;
+    email: string;
+    password: string;
+    address: string;
+    phone: string;
+}
 
 
 export interface User {

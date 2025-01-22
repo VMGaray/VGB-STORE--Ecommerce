@@ -7,7 +7,8 @@ interface CardProps extends Product {variant?: "primary" | "secondary" };
 const Card = ({name, image, price, id, variant = "primary"}: CardProps) => {
   return (
     <Link href={`/products/${id}`}>
-    <article className={`transition ease-in-out delay-150 hover:scale-105 text-cyan-950 ${ variant === "primary" ? "bg-quarternary": "bg-secundant"}`}>
+    <article className=
+    {`transition ease-in-out delay-150 hover:scale-105 text-cyan-950 ${ variant === "primary" ? "bg-quarternary": "bg-secundant"}`}>
       <h3>{name}</h3>
       <img src ={image} alt="title" />
       <p>{price}</p>

@@ -3,6 +3,7 @@ import { productsMock } from "./mocks/products";
 import CardList from "../components/Card/CardList/CardList";
 import Hero from "../components/Hero/Hero";
 
+
 const page = () => {
 
     return (
@@ -18,4 +19,4 @@ const page = () => {
       ); 
   };
 
-export default page;
+export default page; 

@@ -28,13 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={secondaryFont.className}>
-     
-      <body
-        className={`${primaryFont.variable} ${secondaryFont.variable} antialiased`}
-      >
-        
+      <body className={`${primaryFont.variable} ${secondaryFont.variable} antialiased`}>        
         <Navbar />
-        <main className="container">{children}</main> 
+      <main className="container">{children}</main> 
         <Footer />
         
       </body>

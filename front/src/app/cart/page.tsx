@@ -1,6 +1,10 @@
+"use client";
+import React from "react";
+import Cart from "@/components/Cart/Cart"; 
 
 const page = () => {
-  return <h1>Cart</h1>
-  };
+  return <Cart />;
+};
 
 export default page;
+

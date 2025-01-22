@@ -1,98 +1,185 @@
-"use client";
-import { ChangeEvent, FormEvent, useState, useEffect} from "react";
-import { validateEmail, validatePassword } from "@/helpers/validation";
+"use client"
+
+import { Input } from "@nextui-org/input";
+import { Button } from "@nextui-org/react";
+import { useForm, Controller } from 'react-hook-form';
+import { RegisterFormType } from "@/app/interfaces";
+import { registerUser } from "@/service/authServices";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import useUserDataStore from "@/store";
 
 const RegisterForm = () => {
+    const router = useRouter()
+    const { userData } = useUserDataStore();
+  const { 
+    handleSubmit,
+    control,
+    formState: { errors } } = useForm<RegisterFormType>({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      address: "",
+      phone: ""
+    },
+    mode: "onChange"
+  });
 
-    const initialState = {
-        name: "",
-        email: "",
-        birthdate: "",
-        nDni: "",
-        username: "",
-        password: "",
-    }
-
-    const [data, setData] = useState(initialState);
-    const [errors, setErrors] = useState(initialState);
-    const [touched, setTouched] = useState({ 
-        name:false, 
-        email:false, 
-        birthdate:false, 
-        nDni:false, 
-        username:false, 
-        password:false,
-        })
-    
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    alert("Submit");
-     }; 
-
-    const handleChange = (e:ChangeEvent<HTMLInputElement> ) => {
-      setData({...data,  [e.target.name]:e.target.value});
-    };
-
-    const handleBlur = (e:ChangeEvent<HTMLInputElement> ) => {
-      setTouched({...touched,  [e.target.name]: true});
-    };
-
-    
-    const canSubmit = () => {
-        return !validateEmail(data.name) && 
-               !validatePassword(data.email) && 
-               !validatePassword(data.birthdate) && 
-               !validatePassword(data.nDni) && 
-               !validatePassword(data.username) && 
-               !validatePassword(data.password);
+  useEffect(()=> {
+        if(userData) {
+          router.push("/dashboard");
         }
+      }, []);
 
-    
-    return (
-        <form className="max-w-sm mx-auto flex flex-col gap-5" 
-              onSubmit={(e) => handleSubmit(e)}>
+  const onSubmit = async (data: RegisterFormType) => {
+    const res = await registerUser(data); 
+    if (res) alert ("User created");
+    router.push("/login")
+    console.log(data);
+  }
 
-          <div>
-           <label className="block mb-2 text-sm font-medium">Usuario</label>
-           <input
-                type="text"
-                className={`bg-quaternary border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
-                          ${errors.email !== "" && touched.email ? "bg-red-100" : ""}`}
-                placeholder="name@email.com"
-                name="email"
-                onChange={(e) => handleChange(e)} 
-                value={data.email}
-                onBlur={(e) => handleBlur(e)}
-            />
-            {touched.email && <p className="text-red-700">{errors.email}</p>}
-
-           </div>
-
-           <div>
-            <label className="block mb-2 text-sm font-medium">Password</label>
-            <input 
-                type="password"
-                className="bg-quaternary border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " 
-                    
-                placeholder="password"
-                name="password"
-                onChange={(e) => handleChange(e)} 
-                value={data.password}
-                onBlur={(e) => handleBlur(e)}
-            />
-            {touched.password && <p className="text-red-700">{errors.password}</p>}
-           </div>
-
-        <button type="submit"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:text-gray-500"
-                disabled={!canSubmit()}>
-        
-               Enviar</button>
-        </form>
+  return (
+    <div className="flex w-full flex-wrap md:flex-nowrap gap-4 h-[100vh]">
       
-  )
+      <form onSubmit={handleSubmit(onSubmit)} className="mx-12 flex flex-col items-center justify-center w-full gap-5">
+       
+        <h1>Registro</h1>
 
+        <Controller
+          name="name"
+          control={control}
+          rules={{
+            required: {
+              value: true,
+              message: "Nombre es requerido",
+            },
+          }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              type="text"
+              label="Nombre"
+              className="w-1/2"
+              placeholder='Victoria Garay'
+            />
+          )}
+        />
+        {errors.name && (
+          <span className="text-red-700">{errors.name.message}</span>
+        )}
+
+        <Controller
+          name="email"
+          control={control}
+          rules={{
+            required: {
+              value: true,
+              message: "Email es requerido",
+            },
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Email no válido",
+            },
+          }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              type="email"
+              label="Email"
+              className="w-1/2"
+              placeholder='example@mail.com'
+            />
+          )}
+        />
+        {errors.email && (
+          <span className="text-red-700">{errors.email.message}</span>
+        )}
+
+        <Controller
+          name="password"
+          control={control}
+          rules={{
+            required: {
+              value: true,
+              message: "Password es requerida"
+            },
+            minLength: {
+              value: 8,
+              message: "Password debe tener al menos 8 caracteres",
+            },
+            pattern: {
+              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
+              message: "Password debe tener al menos una mayúscula, una minúscula, un número y un carácter especial"
+            },
+          }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              type="password"
+              label="Password"
+              className="w-1/2"
+            />
+          )}
+        />
+        {errors.password && (
+          <span className="text-red-700">{errors.password.message}</span>
+        )}
+
+        <Controller
+          name="address"
+          control={control}
+          rules={{
+            required: {
+              value: true,
+              message: "Dirección es requerida",
+            },
+          }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              type="text"
+              label="Dirección"
+              className="w-1/2"
+              placeholder='123 Calle Falsa'
+            />
+          )}
+        />
+        {errors.address && (
+          <span className="text-red-700">{errors.address.message}</span>
+        )}
+
+        <Controller
+          name="phone"
+          control={control}
+          rules={{
+            required: {
+              value: true,
+              message: "Teléfono es requerido",
+            },
+            pattern: {
+              value: /^[0-9]+$/,
+              message: "Teléfono no válido",
+            },
+          }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              type="text"
+              label="Teléfono"
+              className="w-1/2"
+              placeholder='+1234567890'
+            />
+          )}
+        />
+        {errors.phone && (
+          <span className="text-red-700">{errors.phone.message}</span>
+        )}
+
+        <Button color="secondary" type="submit">Registrar</Button>
+      </form>
+    </div>
+  );
 }
-export default RegisterForm;
 
- 
+export default RegisterForm;
