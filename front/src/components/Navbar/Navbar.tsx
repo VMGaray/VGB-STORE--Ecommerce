@@ -4,15 +4,18 @@ import styles from "./Navbar.module.css";
 import useUserDataStore from "@/store";
 import { logoutService } from "@/service/authServices";
 import { useRouter } from "next/navigation";
+import useCartStore from "@/store/useCartStore";
 
 const Navbar = () => {
   const router = useRouter();
   const { userData, setUserData } = useUserDataStore();
+  const { clearCart } = useCartStore();
   
   
   const handleLogout = () => {
     setUserData(null);
     router.push("/");
+    clearCart()
   };
   
   return (

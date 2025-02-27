@@ -8,7 +8,7 @@
     background-color: var(--secundant); 
     border-radius: 1rem; 
     margin: 1rem 0;
-    color: #00bcd4; 
+    color: #272727; 
     text-align: center;
   }
   
@@ -30,7 +30,7 @@
     background-color: #ffffff;
     border: 2px solid #1E90FF; 
     border-radius: 0.5rem; 
-    color: #1E90FF; 
+    color: #272727; 
     text-decoration: none;
     font-size: 1.2rem;
     transition: background-color 0.3s ease, color 0.3s ease; 
@@ -38,6 +38,6 @@
   
   .linkBox:hover {
     background-color: #1E90FF; 
-    color: #ffffff; 
+    color: #272727; 
   }
   

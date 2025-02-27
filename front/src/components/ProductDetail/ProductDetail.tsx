@@ -15,6 +15,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   const { name, price, image, description } = product;
   const { userData } = useUserDataStore();
   const { addProduct } = useCartStore();
+  const { clearCart } = useCartStore();
   const router = useRouter();
 
   const handleAddToCart = () => {
@@ -30,8 +31,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       price: product.price,
       quantity: 1, 
     });
-  };
 
+ 
+  };
+  
 
   return (
     <article>

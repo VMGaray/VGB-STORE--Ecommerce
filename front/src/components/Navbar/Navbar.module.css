@@ -1,5 +1,5 @@
 .navbar {
-    background-color: var(--secondant-color); 
+    background-color: var(--primary-color); 
     padding: 1rem;
     border-radius: 1rem; 
   }
@@ -16,10 +16,10 @@
     align-items: center;
     justify-content: center;
     padding: 0.5rem 1rem;
-    background-color: var(--secondant-color); 
+    background-color: var(--tertiary-color); 
     border: 2px solid var(--primary-color); 
     border-radius: 0.5rem;
-    color: var(--secondant-color); 
+    color: #272727; 
     text-decoration: none;
     font-size: 1.2rem;
     transition: background-color 0.3s ease, color 0.3s ease; 
@@ -27,7 +27,7 @@
   
   .linkBox:hover {
     background-color: var(--primary-color); 
-    color: #ffffff; 
+    color: #2a363b; 
   }
   
   .avatar {
