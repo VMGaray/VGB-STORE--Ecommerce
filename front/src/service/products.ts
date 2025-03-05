@@ -1,6 +1,7 @@
 
 import { Product } from "@/app/interfaces";
 const apiUrl = process.env.API_URL || "http://localhost:3001"
+
 export async function getProducts() {
     try {
       const response = await fetch(`${apiUrl}/products`, {
