@@ -8,10 +8,13 @@ import { registerUser } from "@/service/authServices";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import useUserDataStore from "@/store";
+import { toast } from "sonner";
 
 const RegisterForm = () => {
+  
     const router = useRouter()
     const { userData } = useUserDataStore();
+
   const { 
     handleSubmit,
     control,
@@ -23,7 +26,7 @@ const RegisterForm = () => {
       address: "",
       phone: ""
     },
-    mode: "onChange"
+    mode: "onBlur"
   });
 
   useEffect(()=> {
@@ -34,7 +37,7 @@ const RegisterForm = () => {
 
   const onSubmit = async (data: RegisterFormType) => {
     const res = await registerUser(data); 
-    if (res) alert ("User created");
+    if (res) {toast.success("Usuario registrado correctamente")};
     router.push("/login")
     console.log(data);
   }

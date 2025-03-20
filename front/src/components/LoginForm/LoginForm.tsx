@@ -11,35 +11,35 @@ import { useEffect } from "react";
 
 const LoginForm = () => {
 
-  const router = useRouter();
-  const { setUserData, userData } = useUserDataStore();
-  const { handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm({
+    const router = useRouter();
+    const { setUserData, userData } = useUserDataStore();
+    const { handleSubmit,
+      control,
+      formState: { errors },
+    } = useForm({
     defaultValues: {
       email: "",
       password: "",
     },
-    mode: "onChange",
-  });
+    mode: "onBlur",
+    });
 
-  const onSubmit = async (data: FormData) => {
-    try {
+    const onSubmit = async (data: FormData) => {
+     try {
       const response = await loginService(data);
        setUserData(response);
       router.push("/dashboard"); 
-      console.log(data);
-    } catch (error) {
+      
+     } catch (error) {
       console.error("Error al iniciar sesión:", error);
-    }
-  };
+     }
+     };
 
-  useEffect(() => {
-    if (userData) {
+    useEffect(() => {
+     if (userData) {
       router.push("/dashboard"); 
-    }
-  }, [userData, router]);
+      }
+     }, [userData, router]);
 
   return (
     <div className="flex w-full flex-wrap md:flex-nowrap gap-4 h-[100vh]">

@@ -1,8 +1,12 @@
-"use client";
-
-const NotFound = () => {
-    return <h2>Algo salió mal</h2>;
-
-};
-export default NotFound;
+import Link from 'next/link'
+ 
+export default function NotFound() {
+  return (
+    <div>
+      <h2>Not Found</h2>
+      <p>Página no encontrada. ¿Te gustaría volver a la página principal?</p>
+      <Link href="/">Volver a inicio</Link>
+    </div>
+  )
+}
 

@@ -1,6 +1,6 @@
 import { RegisterFormType, FormData } from "@/app/interfaces";
 
-const apiUrl = process.env.API_URL || "http://localhost:3001";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 export async function registerUser(userData: RegisterFormType) {
     try {
@@ -11,16 +11,12 @@ export async function registerUser(userData: RegisterFormType) {
             },
             body: JSON.stringify(userData),
         });
-        if(response.ok) {
-            return response.json();
-        } else {
-            throw new Error(response.statusText);
-        }
-    } catch (error) {
-        throw new Error(error as string);
+      const data = await response.json();
+      return data;
+    } catch ( error ) {
+      throw new Error((error as Error).message)
     }
-}
-
+  }
 export async function loginService(userData: FormData) {
     try {
         const response = await fetch(`${apiUrl}/users/login`, {
@@ -44,9 +40,7 @@ export async function loginService(userData: FormData) {
 
 
 export async function logoutService() {
-
-  
-    try {
+      try {
         const response = await fetch(`${apiUrl}/users/logout`, {
             method: "POST",
             headers: {

@@ -1,14 +1,15 @@
-"use client";
-import { Product } from "@/app/interfaces";
-import { productsMock } from "@/app/mocks/products";
 import ProductDetail from "@/components/ProductDetail/ProductDetail";
 
+interface PageProps {
+  params: Promise<{
+    id: string[];
 
-const page = ({ params }: { params: { id: string }}) => {
-  const { id } = params;
-    
-  return <ProductDetail product= {productsMock[+id]}/> ;
-  };
+  }>;
+}
+async function Product({ params } : PageProps) {
+  const { id } = await params;
+  return <ProductDetail id={id[0]} />;
+}
 
-export default page;
+export default Product;
 
