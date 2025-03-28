@@ -1,4 +1,4 @@
-import { create } from "zustand";
+/*import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 
 interface CartProduct {
@@ -46,5 +46,5 @@ const useCartStore = create<CartStore>()(
   )
 );
 
-export default useCartStore;
+export default useCartStore; */
 

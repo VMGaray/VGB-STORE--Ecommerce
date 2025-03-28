@@ -8,6 +8,7 @@ import { loginService } from "@/service/authServices";
 import useUserDataStore from "@/store";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 const LoginForm = () => {
 
@@ -28,10 +29,11 @@ const LoginForm = () => {
      try {
       const response = await loginService(data);
        setUserData(response);
+       {toast.success("Usuario logueado correctamente")}
       router.push("/dashboard"); 
       
      } catch (error) {
-      console.error("Error al iniciar sesión:", error);
+      {toast.error("Email o password incorrectos")};
      }
      };
 

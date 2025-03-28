@@ -1,6 +1,6 @@
 import { RegisterFormType, FormData } from "@/app/interfaces";
+import { apiUrl } from "./config";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 export async function registerUser(userData: RegisterFormType) {
     try {
@@ -57,47 +57,8 @@ export async function logoutService() {
     }
 }
 
-export async function dispatchOrder(token: string, products: { id: number }[]) {
-    try {
-      const response = await fetch(`${apiUrl}/orders`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`, 
-        },
-        body: JSON.stringify({ products }),
-      });
+
   
-      if (response.ok) {
-        const data = await response.json();
-        return data;
-      } else {
-        throw new Error(response.statusText);
-      }
-    } catch (error) {
-      throw new Error(error as string);
-    }
-  }
-  export async function getBuyHistory(token: string) {
-    try {
-      const response = await fetch(`${apiUrl}/orders/history`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`, 
-        },
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
-        return data;
-      } else {
-        throw new Error(response.statusText);
-      }
-    } catch (error) {
-        throw new Error(error as string);
-    }
-  }
   
   
   

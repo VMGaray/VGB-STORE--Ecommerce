@@ -2,46 +2,48 @@
 import Link from "next/link";
 import styles from "./Navbar.module.css";
 import useUserDataStore from "@/store";
-import { logoutService } from "@/service/authServices";
 import { useRouter } from "next/navigation";
-import useCartStore from "@/store/useCartStore";
+import { toast } from "sonner";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Navbar = () => {
   const router = useRouter();
-  const { userData, setUserData } = useUserDataStore();
-  const { clearCart } = useCartStore();
-  
-  
+  const { userData, setUserData, cart } = useUserDataStore(); 
+
   const handleLogout = () => {
     setUserData(null);
     router.push("/");
-    clearCart()
+    toast.success("Sesión cerrada correctamente");
   };
-  
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.container}>
-        
         <Link href="/" className={styles.linkBox}>Inicio</Link>
-        {userData ? (
+
+        {userData?.token ? (
           <>
-        
-        <Link href="/account" className={styles.linkBox}>Mi Cuenta</Link>
-        <Link href="/dashboard" className={styles.linkBox}>Dashboard</Link>
-        <Link href="/cart" className={styles.linkBox}>Carrito de compra</Link>
-            {userData.avatar && (
-              <img src={userData.avatar} alt="User Avatar" className={styles.avatar} />
-            )}
-            <button className={styles.linkBox} onClick={handleLogout}>Logout</button>
+            <Link href="/account" className={styles.linkBox}>Mi Cuenta</Link>
+            <Link href="/dashboard" className={styles.linkBox}>Dashboard</Link>
+            
+            {/* Ícono de carrito con contador */}
+            <Link href="/cart" className="relative">
+              <AiOutlineShoppingCart color="pink" size={38} />
+              {cart.length > 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                  {cart.length}
+                </span>
+              )}
+            </Link>
+            
+            <button className={styles.linkBox} onClick={handleLogout}>
+              Logout
+            </button>
           </>
         ) : (
           <>
-        
-        <Link href="/login" className={styles.linkBox}>Login</Link>
-        
-        <Link href="/register" className={styles.linkBox}>Nuevo usuario</Link>
-
-        
+            <Link href="/login" className={styles.linkBox}>Login</Link>
+            <Link href="/register" className={styles.linkBox}>Nuevo usuario</Link>
           </>
         )}
       </div>
@@ -50,4 +52,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

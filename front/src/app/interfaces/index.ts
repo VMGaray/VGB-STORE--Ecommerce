@@ -8,7 +8,6 @@ export interface Product {
     image: string;
     categoryId: number;
 }
-
 export interface RegisterFormType {
     name: string;
     email: string;
@@ -16,18 +15,26 @@ export interface RegisterFormType {
     address: string;
     phone: string;
 }
-
-
 export interface User {
     id: number;
     name: string;
     email: string;
     address: string;
-    phone: string;
-   
+    phone: string;  
 }
-
 export interface FormData {
-    email:string,
-    password:string,
+    email:string;
+    password:string;
   }
+export interface IuserData {
+    login: boolean;
+    message: string;
+    user: {
+        id: number;
+        name: string;
+        email: string;
+        password: string;
+        address: string;
+        phone: string;
+    };
+}

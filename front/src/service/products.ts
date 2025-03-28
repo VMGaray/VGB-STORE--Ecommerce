@@ -1,7 +1,7 @@
 
 import { Product } from "@/app/interfaces";
+import { apiUrl } from "./config";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
  
 
 export async function getProducts() {

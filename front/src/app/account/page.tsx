@@ -10,7 +10,7 @@ const page = () => {
     <>
      
      <Account />
-     <BuyHistory />
+    
       
      </> 
     
