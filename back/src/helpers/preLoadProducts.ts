@@ -18,7 +18,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Experience power and elegance with the iPhone 11: capture stunning moments with its dual-camera system, enjoy exceptional performance, and immerse yourself in a brilliant Liquid Retina display. Discover a world of possibilities in the palm of your hand!",
     image:
-      "https://th.bing.com/th/id/OIP.uomH3EnVm5a7E4hC8OKn0QHaHp?rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th/id/OIP.GCmnFc54n2iX8Ipj5RlEiAHaFj?w=213&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
     categoryId: 1,
     stock: 10,
   },
