@@ -2,8 +2,6 @@
 import { Product } from "@/app/interfaces";
 import { apiUrl } from "./config";
 
- 
-
 export async function getProducts() {
     try {
       const res = await fetch(`${apiUrl}/products`, {
@@ -17,7 +15,7 @@ export async function getProducts() {
     }
   }
       
-  export async function getProductById(id: string, ) {
+export async function getProductById(id: string, ) {
     try {
       const products = await getProducts() 
       const product = products.find((product) => product.id == id);

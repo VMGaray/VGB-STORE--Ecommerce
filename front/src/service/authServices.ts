@@ -38,7 +38,6 @@ export async function loginService(userData: FormData) {
     }
 }
 
-
 export async function logoutService() {
       try {
         const response = await fetch(`${apiUrl}/users/logout`, {

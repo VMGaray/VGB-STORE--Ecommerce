@@ -30,34 +30,3 @@ const useUserDataStore = create<EcommerceStore>()(
   )
 );
 export default useUserDataStore;
-/*
-import { Product } from "@/app/interfaces";
-import { create } from "zustand";
-import { devtools, persist, createJSONStorage } from "zustand/middleware";
-
-interface EcommerceStore {
-  cart: Product[]
-  setCart: (data: Product[]) => void; 
-  userData: any;
-  setUserData: (data: any) => void;
-}
-
-const useUserDataStore = create<EcommerceStore>()(
-    devtools(
-      persist((set) => ({
-        userData:null,
-        cart: [],
-          setUserData: (data) => set({userData:data}),
-          setCart: (data) => set({ cart: data})          
-        }),
-
-        { name: "ecommerce-storage",
-        storage: createJSONStorage(() => sessionStorage),
-        }
-      )
-    )
-);
-
-
-
-export default useUserDataStore; */

@@ -1,20 +1,11 @@
 
 import Account from "@/components/Account/Account";
-import BuyHistory from "@/components/BuyHistory/BuyHistory";
-
-
  
 const page = () => {
       
     return (
-    <>
-     
-     <Account />
-    
-      
-     </> 
-    
-  );
+      <Account />
+        );
 };
 
 export default page

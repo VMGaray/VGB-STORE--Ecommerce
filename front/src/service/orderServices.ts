@@ -16,8 +16,7 @@ export async function dispatchOrder(products: number[], userId: string, token: s
       throw new Error(error as string);
     }
   }
-
-  export async function getBuyHistory(token: string) {
+export async function getBuyHistory(token: string) {
     try {
       const response = await fetch(`${apiUrl}/users/orders`, {
         method: "GET",

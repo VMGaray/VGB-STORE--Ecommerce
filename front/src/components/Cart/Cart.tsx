@@ -49,41 +49,35 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Carrito de Compras</h1>
+     <h1 className="text-2xl font-bold mb-4">Carrito de Compras</h1>
       <ul>
-        {cart.map((product) => (
-          <li
-            key={product.id}
-            className="flex items-center justify-between mb-4 border-b pb-2"
-          >
-            <div className="flex items-center space-x-4">
-              {product.image && (
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-32 h-32 object-cover rounded-md"
-                />
+       {cart.map((product) => (
+        <li
+         key={product.id}
+         className="flex items-center justify-between mb-4 border-b pb-2">
+          <div className="flex items-center space-x-4">
+           {product.image && (
+           <img
+            src={product.image}
+            alt={product.name}
+            className="w-32 h-32 object-cover rounded-md"/>
               )}
-              <div>
-                <h2>{product.name}</h2>
-                <p>Precio: ${product.price}</p>
-              </div>
-            </div>
-            <button
-              onClick={() => removeFromCart(product.id)}
-              className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-            >
-              Eliminar
-            </button>
-          </li>
+           <div>
+           <h2>{product.name}</h2>
+           <p>Precio: ${product.price}</p>
+           </div>
+          </div>
+          <button onClick={() => removeFromCart(product.id)}
+            className="px-2 py-1 bg-red-500 text-white text-sm rounded-md hover:bg-red-600">
+            Eliminar
+          </button>
+        </li>
         ))}
-      </ul>
-  
+      </ul>  
       { }
       <div className="mt-4 p-4 border-t border-gray-300">
         <h2 className="text-xl font-bold">Total: ${total}</h2>
-      </div>
-  
+      </div>  
       <button
         onClick={handleDispatchOrder}
         disabled={loading}
@@ -97,76 +91,11 @@ const Cart = () => {
       </button>
     </div>
   );
-  
-  /*const handleDispatchOrder = async () => {
-    if (!userData || !userData.token) {
-      toast.error("Por favor, inicie sesión para completar la compra.");
-      return;
-    }
-    const userId = userData.id; // ID del usuario desde el estado
-    const token = userData.token; // Token para autenticación
-    setLoading(true); // Activa el indicador de carga
-    try {
-      const response = await dispatchOrder(cart, userData.id, userData.token); // Llamada al servicio
-      toast.success("Compra registrada con éxito. ¡Gracias por tu compra!");
-      setCart([]); // Vacía el carrito después de registrar la compra
-      //router.push("/resumen"); // Redirige al resumen de compra
-    } catch (error) {
-      toast.error("Hubo un error al registrar la compra. Por favor, inténtalo de nuevo."
-      );
-    } finally {
-      setLoading(false); // Desactiva el indicador de carga
-    } 
-  
-  if (cart.length === 0) {
-    return <div>Tu carrito está vacío.</div>;
   };
-}; */
-  /*return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Carrito de Compras</h1>
-      <ul>
-        {cart.map((product) => (
-          <li
-            key={product.id}
-            className="flex items-center justify-between mb-4 border-b pb-2"
-          >
-            <div className="flex items-center space-x-4">
-              {product.image && (
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-32 h-32 object-cover rounded-md"
-                />
-              )}
-              <div>
-                <h2>{product.name}</h2>
-                <p>Precio: ${product.price}</p>
-              </div>
-            </div>
-            <button
-              onClick={() => handleRemoveFromCart(product.id)}
-              className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-            >
-              Eliminar
-            </button>
-          </li>
-        ))}
-      </ul>
-      <button
-        onClick={handleDispatchOrder}
-        disabled={loading}
-        className={`mt-4 px-4 py-2 ${
-         loading
-            ? "bg-gray-500 cursor-not-allowed"
-            : "bg-blue-600 hover:bg-blue-700"
-        } text-white rounded`}
-      >
-        {loading ? "Procesando..." : "Comprar"}
-      </button>
-    </div>
-  );*/
-};
 
-export default Cart;
+  export default Cart;
+    
+      
+
+
 

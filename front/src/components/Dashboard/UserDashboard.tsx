@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import useUserDataStore from "@/store";
 import { getBuyHistory } from "@/service/orderServices";
-import { error } from "console";
 
 const UserDashboard = () => {
   const { userData } = useUserDataStore();
@@ -48,9 +47,7 @@ const UserDashboard = () => {
           <h2 className="text-xl font-semibold">Telefono</h2>
           <p className="text-lg">{userData?.user?.phone || "N/A"}</p>
         </div>
-                  
       </main>
-      
       <section>
         <h2 className="text 4xl font-bold text-gray-600">Historial de compras</h2>
         <div>
