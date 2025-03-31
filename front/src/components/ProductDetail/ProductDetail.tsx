@@ -5,7 +5,7 @@ import { Product } from "@/app/interfaces";
 
 function ProductDetail({ product }: { product: Product }) {
   const { id, name, price, image } = product; 
-
+  //const { userData, cart, setCart } = useUserDataStore();
   const userData = useUserDataStore((state) => state.userData);
   const cart = useUserDataStore((state) => state.cart);
   const setCart = useUserDataStore((state) => state.setCart);

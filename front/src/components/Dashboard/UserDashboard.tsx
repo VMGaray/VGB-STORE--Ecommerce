@@ -1,28 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import useUserDataStore from "@/store";
-import { getBuyHistory } from "@/service/orderServices";
 
 const UserDashboard = () => {
   const { userData } = useUserDataStore();
-  const [ orders, setOrders ] = useState([]);
-  
-  const getOrders = async () => {
-    try {
-      const orders = await getBuyHistory(userData?.token as string);
-      setOrders(orders);
-    } catch(error) {
-    console.log(error)
-  }
-}
-  useEffect(() => {
-    getOrders();
-
-  }, [userData]); 
-
   if (!userData) {
-    return <div>Por favor loguearse para ver la información...</div>;
-      }
+   return <div>Por favor loguearse para ver la información...</div>;
+  }
 
   return (
     <div className="max-w-4xl mx-auto my-8 px-4 py-8">
@@ -48,18 +32,7 @@ const UserDashboard = () => {
           <p className="text-lg">{userData?.user?.phone || "N/A"}</p>
         </div>
       </main>
-      <section>
-        <h2 className="text 4xl font-bold text-gray-600">Historial de compras</h2>
-        <div>
-          {orders.map((order:any) => (
-            <div key={order.id}>
-              <h3 className="text-lg font-semibold">Orden #{order.id}</h3>
-              <p className="text-gray-700">Fecha: {order.date}</p>
-              <p className="text-gray-700">Estado: {order.status}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      
     </div>
   );
 };

@@ -8,9 +8,11 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Navbar = () => {
   const router = useRouter();
-  const { userData, setUserData, cart } = useUserDataStore(); 
+  const { userData, setUserData, cart, setCart } = useUserDataStore();
+   
 
   const handleLogout = () => {
+    setCart([]);
     setUserData(null);
     router.push("/");
     toast.success("Sesión cerrada correctamente");
@@ -24,9 +26,10 @@ const Navbar = () => {
         {userData?.token ? (
           <>
             <Link href="/account" className={styles.linkBox}>Mi Cuenta</Link>
+            <Link href="/purchaseHistory" className={styles.linkBox}>Historial de compras</Link>
             <Link href="/dashboard" className={styles.linkBox}>Dashboard</Link>
             
-            {/* Ícono de carrito con contador */}
+            {     }
             <Link href="/cart" className="relative">
               <AiOutlineShoppingCart color="pink" size={38} />
               {cart.length > 0 && (

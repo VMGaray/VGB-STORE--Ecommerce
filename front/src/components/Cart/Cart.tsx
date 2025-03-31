@@ -7,6 +7,7 @@ import { Product } from "@/app/interfaces";
 import { dispatchOrder } from "@/service/orderServices";
 
 const Cart = () => {
+  //const { userData, setUserData, cart, setCart } = useUserDataStore();
   const userData = useUserDataStore((state) => state.userData);
   const cart = useUserDataStore((state) => state.cart);
   const setCart = useUserDataStore((state) => state.setCart);
@@ -32,6 +33,7 @@ const Cart = () => {
         toast.success("order creada correctamente");
       }
       setLoading(false);
+      setTotal(0);
       setCart([]);
     } catch(error) {
       setLoading(false)
@@ -39,7 +41,6 @@ const Cart = () => {
     };
   };
   useEffect(() => {
-    if(cart.length == 0) return;
     let total =0;
     cart.forEach((product:Product) => {
       total += product.price;
@@ -68,7 +69,7 @@ const Cart = () => {
            </div>
           </div>
           <button onClick={() => removeFromCart(product.id)}
-            className="px-2 py-1 bg-red-500 text-white text-sm rounded-md hover:bg-red-600">
+            className="px-2 py-1 bg-red-400 text-white text-sm rounded-md hover:bg-red-500">
             Eliminar
           </button>
         </li>
@@ -84,7 +85,7 @@ const Cart = () => {
         className={`mt-4 px-4 py-2 ${
           loading
             ? "bg-gray-500 cursor-not-allowed"
-            : "bg-blue-600 hover:bg-blue-700"
+            : "bg-primary hover:bg-secundant"
         } text-white rounded`}
       >
         {loading ? "Procesando..." : "Comprar"}

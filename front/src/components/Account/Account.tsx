@@ -13,9 +13,11 @@ const Account = () => {
   return (
     <div className="flex flex-col items-center bg-tertiary p-6 rounded-lg shadow-md max-w-lg mx-auto">
       <h1 className="text-2xl font-bold text-primary mb-4">Mi Cuenta</h1>
-      <div className="flex flex-col items-center text-center">
-        <p className="text-primary"><strong>Nombre:</strong> {userData.name}</p>
-        <p className="text-primary"><strong>Email:</strong> {userData.email}</p>
+      <div className="flex flex-col items-center text-center">    
+        <h2 className="text-xl font-semibold ">Nombre</h2>
+        <p className="text-lg text-gray-500">{userData?.user?.name || "N/A"}</p>
+        <h2 className="text-xl font-semibold">Correo electrónico</h2>
+        <p className="text-lg text-gray-500">{userData?.user?.email || "N/A"}</p>
       </div>
       <div className="flex flex-col gap-3 mt-6">
         <button className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-secundant transition duration-300"
