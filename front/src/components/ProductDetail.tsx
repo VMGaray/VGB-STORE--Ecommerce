@@ -1,6 +1,22 @@
+"use client"
+import { useAuth } from "@/context/AuthContext";
 import { IProduct } from "@/interfaces";
 
-const ProductDetail: React.FC<IProduct> = ({ name, id, price, image, description, stock }) => {
+const ProductDetail: React.FC<IProduct> = ({ name, id, price, image, description, stock, categoryId }) => {
+
+  const {userData} = useAuth();
+  
+  const handleAddToCart = ()=> {
+    if (userData?.token) {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]")
+      cart.push({ name, id, price, image, description, stock, categoryId })
+      localStorage.setItem("cart", JSON.stringify(cart))
+      alert("Producto agregado al carrito")
+    } else {
+      alert("Debes loguearte para agregar un producto al carrito")
+    }
+  }
+  
   return (
     <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-6">
       <h1 className="text-2xl font-bold text-blue-950 mb-4">{name}</h1>
@@ -8,6 +24,7 @@ const ProductDetail: React.FC<IProduct> = ({ name, id, price, image, description
       <p className="text-blue-950 mt-2">{description}</p>
       <p className="text-blue-950 font-medium mt-2">Stock: <span className="font-bold">{stock}</span></p>
       <p className="text-blue-800 text-lg font-semibold mt-2">Precio: ${price}</p>
+      <button onClick={handleAddToCart}> Agregar al carrito </button>
     </div>
   );
 };

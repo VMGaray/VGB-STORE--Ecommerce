@@ -1,8 +1,9 @@
+import CartView from "@/components/CartView";
 
 const Cart = () => {
   return (
     <div>
-      Carrito de compras
+      <CartView/>
     </div>
   )
 }

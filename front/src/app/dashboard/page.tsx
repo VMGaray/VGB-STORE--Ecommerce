@@ -1,10 +1,12 @@
+import UserDashboard from "@/components/UserDashboard";
 
-const Dashboard = () => {
+const page = () => {
   return (
     <div>
-      Dashboard
+     <UserDashboard/>
     </div>
   )
 }
 
-export default Dashboard;
+export default page;
+

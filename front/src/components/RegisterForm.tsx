@@ -1,16 +1,22 @@
 "use client";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validateRegisterForm } from "@/helpers/validate";
+import { register } from "@/helpers/auth.helpers";
+import { useRouter } from "next/navigation";
+
 
 const RegisterForm = () => {
+  const router= useRouter();
+   
   return (
     <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg">
       <h1 className="text-xl font-bold text-center mb-6 text-blue-950">Registro de usuario</h1>
       <Formik
         initialValues={{ email: "", password: "", name: "", phone: "", address: "" }}
         validate={validateRegisterForm}
-        onSubmit={(values) => {
-          console.log(values, "Registro exitoso");
+        onSubmit={ async (values) => {
+          await register(values)
+          router.push("/login")
         }}
       >
         {({ isSubmitting, errors }) => (

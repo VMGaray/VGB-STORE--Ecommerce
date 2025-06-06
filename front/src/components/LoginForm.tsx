@@ -1,16 +1,26 @@
 "use client";
+import { useAuth } from "@/context/AuthContext";
+import { login } from "@/helpers/auth.helpers";
 import { validateLoginForm } from "@/helpers/validate";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const router=useRouter();
+  const { setUserData} = useAuth();
+    
   return (
     <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg ">
       <h1 className="text-xl font-bold text-center mb-6 text-blue-950 ">Iniciar sesión</h1>
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={validateLoginForm}
-        onSubmit={(values) => {
-          console.log(values, "Seción iniciada correctamente");
+        onSubmit={ async (values) => {
+          const response= await login(values)
+          const {token, user} = response;
+          setUserData({token, user})
+          router.push("/"); 
+          
         }}
       >
         {({ isSubmitting, errors }) => (

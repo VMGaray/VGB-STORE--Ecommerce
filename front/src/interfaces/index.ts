@@ -36,3 +36,20 @@ export interface IRegisterErrors {
     address?: string;
     phone?: string;
 }
+export interface IUserSession {
+    token: string;
+    user: {
+        id: number;
+        name: string;
+        address: string;
+        email: string;
+        orders: [];
+        phone: string
+    }
+}
+export interface IOrder {
+    id: number;
+    status: string;
+    date: Date;
+    products: IProduct[]
+}
