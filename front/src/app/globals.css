@@ -1,2 +1,29 @@
 @import "tailwindcss";
 
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite; 
+
+.marquee:hover {
+  animation-play-state: paused; 
+}
+}
+
+@keyframes rotate3D {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(180deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.logo-3d {
+  display: inline-block;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+  animation: rotate3D 10s linear infinite;
+}

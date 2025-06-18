@@ -6,8 +6,8 @@ const Footer = () => {
       <div className="flex flex-wrap justify-between">
         <div className="m-2 flex-1">
           <h3 className="text-lg font-semibold">Dirección: Julio A. Roca 83, Villa General Belgrano</h3>
-          <p>Teléfono: +54 3546-4561 0789</p>
-          <p>Email: contacto@vgbstore.com</p>
+          <p>☎ Teléfono: +54 3546-4561 0789</p>
+          <p>✉ Email: contacto@vgbstore.com</p>
           <p>Horario: Lun-Vie 9 a 21 hs</p>
 
         </div>
