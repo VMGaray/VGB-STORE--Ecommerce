@@ -56,7 +56,7 @@ const CartView = () => {
             <button
               onClick={handleDispatchOrder}
               className="mt-4 px-6 py-3 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300"
-              >Comprar
+              >Confirmar Compra
             </button>
           </div>
          </>

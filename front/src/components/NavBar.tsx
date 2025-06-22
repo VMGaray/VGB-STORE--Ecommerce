@@ -10,14 +10,15 @@ import Cookies from "js-cookie";
 const NavBar = () => {
  
   const { userData, setUserData } = useAuth();
-  const { cart } = useCart(); 
+  const { cart, setCart } = useCart(); 
   const [search, setSearch] = useState("");
   const router = useRouter();
 
   const handleLogout = () => {
     setUserData(null);
-    localStorage.removeItem("userSession");
+    setCart([])
     localStorage.removeItem("cart");
+    localStorage.removeItem("userSession");
     Cookies.remove("userSession");
     alert("Te has deslogueado");
     router.push("/");

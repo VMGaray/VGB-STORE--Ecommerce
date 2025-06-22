@@ -2,16 +2,15 @@
 import { createContext, useContext, useState, useEffect, Dispatch, SetStateAction } from "react";
 import { IProduct } from "@/interfaces";
 
-// Define la interfaz del contexto
+
 interface CartContextProps {
   cart: IProduct[];
   setCart: Dispatch<SetStateAction<IProduct[]>>;
 }
 
-// Inicializa el contexto con un valor por defecto correcto
 const CartContext = createContext<CartContextProps | null>(null);
 
-// Proveedor del contexto
+
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<IProduct[]>([]);
 
@@ -31,7 +30,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// Hook para acceder al contexto
+
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
@@ -39,3 +38,4 @@ export const useCart = () => {
   }
   return context;
 };
+

@@ -6,7 +6,8 @@ export function middleware(request: NextRequest) {
         const url = request.nextUrl.clone()
         url.pathname= "/login"
         return NextResponse.rewrite(url)
-    } else { NextResponse.next();
+    } else { 
+        return NextResponse.next();
 
     }
 }

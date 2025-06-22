@@ -8,12 +8,13 @@
 .marquee {
   display: inline-block;
   white-space: nowrap;
-  animation: marquee 20s linear infinite; 
+  animation: marquee 20s linear infinite;
+}
 
 .marquee:hover {
-  animation-play-state: paused; 
+  animation-play-state: paused;
 }
-}
+
 
 @keyframes rotate3D {
   0% { transform: rotateY(0deg); }
