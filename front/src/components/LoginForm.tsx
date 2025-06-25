@@ -1,5 +1,6 @@
 "use client";
 import { useAuth } from "@/context/AuthContext";
+import { useCart } from "@/context/CartContext";
 import { login } from "@/helpers/auth.helpers";
 import { validateLoginForm } from "@/helpers/validate";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -9,6 +10,8 @@ const LoginForm = () => {
   
   const router=useRouter();
   const { setUserData} = useAuth();
+  const { setCart } = useCart();
+
     
   return (
    <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg ">
@@ -19,7 +22,14 @@ const LoginForm = () => {
        onSubmit={ async (values) => {
         const response= await login(values)
         const {token, user} = response;
-        setUserData({token, user})
+        setUserData({token, user});
+        if (user?.email) {
+          const savedCart = localStorage.getItem("cart_" + user.email);
+          if (savedCart) {
+          setCart(JSON.parse(savedCart));
+          }
+        }
+
         router.push("/"); 
        }}
       >

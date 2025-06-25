@@ -15,7 +15,7 @@ export async function register(userData: IRegisterProps )  {
             alert("Usuario registrado con exito")
             return response.json()
         } else {
-            throw new Error("Fallo el servidor al registrar el usuario, vuelva a intentar más tarde")
+            throw new Error("Los datos ingresados ya pertenecen a un usuario registrado")
         }
       
     } catch(error: any) {

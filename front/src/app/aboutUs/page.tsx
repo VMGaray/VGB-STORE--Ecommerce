@@ -1,6 +1,5 @@
 import AboutUsInfo from '@/components/AboutUs'
 
-
 const AboutUs = () => {
   return (
     <div>

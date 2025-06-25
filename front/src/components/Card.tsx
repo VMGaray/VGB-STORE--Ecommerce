@@ -1,7 +1,6 @@
 import { IProduct } from "@/interfaces";
-import Link from "next/link";
 
-const Card: React.FC<IProduct> =({id, name, price, image}) => {
+ const Card: React.FC<IProduct> =({name, price, image}) => {
     
   return (
     <article

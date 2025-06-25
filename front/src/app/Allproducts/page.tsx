@@ -1,4 +1,3 @@
-
 import Card from "@/components/Card";
 import { getProductsDB } from "@/helpers/products.helpers";
 import Link from "next/link";

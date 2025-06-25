@@ -9,12 +9,20 @@ const ProductDetail: React.FC<IProduct> = ({ name, id, price, image, description
   const { cart, setCart } = useCart();
 
   const handleAddToCart = () => {
-    if (userData?.token) {
-      setCart((prevCart) => [...prevCart, { name, id, price, image, description, stock, categoryId }]);
-      alert("Producto agregado al carrito");
-    } else {
-      alert("Debes loguearte para agregar un producto al carrito");
-    }
+   if (!userData?.token) {
+    alert("Debes loguearte para agregar un producto al carrito");
+    return;
+   }
+
+   const alreadyInCart = cart.find((item) => item.id === id);
+
+    if (alreadyInCart) {
+    const confirmAdd = window.confirm("Este producto ya fue cargado. ¿Deseás continuar?");
+    if (!confirmAdd) return;
+   }
+
+   setCart((prevCart) => [...prevCart, { name, id, price, image, description, stock, categoryId }]);
+   alert("Producto agregado al carrito");
   };
 
   return (
@@ -33,9 +41,9 @@ const ProductDetail: React.FC<IProduct> = ({ name, id, price, image, description
       </button>
   
       <Link
-        href="/"
+        href="/allProducts"
         className="px-6 py-3 text-blue-900 border border-blue-900 font-bold rounded-lg hover:bg-blue-900 hover:text-white transition duration-300"
-        >Volver al inicio
+        >Volver
       </Link>
     </div>
 

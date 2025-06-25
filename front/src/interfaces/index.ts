@@ -22,6 +22,7 @@ export interface ILoginErrors {
     email?: string;
     password?: string;
 }
+
 export interface IRegisterProps {
     email: string;
     password: string;
@@ -29,6 +30,7 @@ export interface IRegisterProps {
     address: string;
     phone: string;
 }
+
 export interface IRegisterErrors {
     email?: string;
     password?: string;
@@ -36,6 +38,7 @@ export interface IRegisterErrors {
     address?: string;
     phone?: string;
 }
+
 export interface IUserSession {
     token: string;
     user: {
@@ -47,6 +50,7 @@ export interface IUserSession {
         phone: string
     }
 }
+
 export interface IOrder {
     id: number;
     status: string;

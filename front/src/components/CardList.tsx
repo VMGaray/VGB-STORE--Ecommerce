@@ -3,11 +3,15 @@ import { getProductsDB } from "@/helpers/products.helpers";
 import Link from "next/link";
 
 const CardList = async () => {
+  
   const productsToPreLoad = await getProductsDB();
   const featuredProducts = productsToPreLoad.slice(0, 3);
 
   return (
     <div className="p-4">
+      
+      <h2 className="text-2xl font-bold text-center mb-6 text-blue-900">Productos Destacados</h2>
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {featuredProducts.map((product) => (
           <Link key={product.id} href={`/product/${product.id}`}>
@@ -18,7 +22,7 @@ const CardList = async () => {
 
       <div className="mt-6 text-center">
         <Link
-          href="/Allproducts"
+          href="/allProducts"
           className="inline-block px-6 py-3 bg-blue-950 text-white font-bold rounded-lg hover:bg-blue-900 transition"
           >Ver todos los productos
         </Link>

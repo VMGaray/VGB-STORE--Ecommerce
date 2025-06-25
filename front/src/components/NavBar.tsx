@@ -6,25 +6,32 @@ import { useCart } from "@/context/CartContext";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { MdLogout } from "react-icons/md"; 
+
 
 const NavBar = () => {
  
   const { userData, setUserData } = useAuth();
   const { cart, setCart } = useCart(); 
-  const [search, setSearch] = useState("");
   const router = useRouter();
 
+ 
   const handleLogout = () => {
+    if (userData?.user?.email && cart.length > 0) {
+    localStorage.setItem("cart_" + userData.user.email, JSON.stringify(cart));
+  }
+
     setUserData(null);
-    setCart([])
+    setCart([]);
     localStorage.removeItem("cart");
     localStorage.removeItem("userSession");
     Cookies.remove("userSession");
-    alert("Te has deslogueado");
-    router.push("/");
+
     alert("Sesión cerrada correctamente");
+    router.push("/");
   };
 
+  
   return (
     <nav className="bg-sky-100 p-4 flex items-center justify-between">
       <span className="text-xl font-bold text-blue-950 logo-3d hover:animate-none">
@@ -51,7 +58,14 @@ const NavBar = () => {
           <Link href="/" className="text-blue-900 hover:text-blue-700 transition">Inicio</Link>
           <Link href="/aboutUs" className="text-blue-900 hover:text-blue-700 transition">Nosotros</Link>
           <Link href="/dashboard" className="text-blue-900 hover:text-blue-700 transition">Dashboard</Link>
-          <button className="text-blue-900 hover:text-blue-700 transition" onClick={handleLogout}>
+          <button
+            onClick={handleLogout}
+            className="group flex items-center gap-2 text-blue-900 hover:text-blue-700 transition font-medium text-base leading-[1.5] relative"
+            >
+            <MdLogout
+            size={22}
+            className="transition-transform duration-200 group-hover:rotate-[-15deg]"
+            />
             Logout
           </button>
          </>
